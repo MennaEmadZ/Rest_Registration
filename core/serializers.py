@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate
 from django.core import exceptions
 from rest_framework import serializers
 from django.contrib.auth.models import User
@@ -77,7 +78,10 @@ class LoginUserSerializer(serializers.Serializer):
         password = data.get("password", None)
         try:
             user = User.objects.get(email=email)
+            user_auth = authenticate(username=user.username, password=password)
+            print(user_auth)
             if user.check_password(password):
+
                 return user
         except exceptions.ValidationError:
             raise serializers.ValidationError('A user with this email and password is not found.')

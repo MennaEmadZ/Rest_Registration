@@ -5,6 +5,7 @@ from django.db.models import DateField
 # Create your models here.
 
 
+# the best solution here was to use custom manger
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     birth_date = DateField()

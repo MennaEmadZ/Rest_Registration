@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from knox.models import AuthToken
-
 from .models import Profile
 from .serializers import CreateUserSerializer, UserSerializer, LoginUserSerializer, ProfileSerializer
 
@@ -52,4 +51,3 @@ class UserAPI(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
-
