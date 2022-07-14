@@ -15,6 +15,12 @@ from pathlib import Path
 # Rest Knox
 from datetime import timedelta
 from rest_framework.settings import api_settings
+import environ
+
+# Declring environ
+env = environ.Env()
+# Read env file
+environ.Env.read_env()
 REST_KNOX = {
   'SECURE_HASH_ALGORITHM': 'cryptography.hazmat.primitives.hashes.SHA512',
   'AUTH_TOKEN_CHARACTER_LENGTH': 64,
@@ -33,8 +39,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-u5@pu-ff)&@2w!p0v9^i4=n#lhh8y5jw7n14r^*8%1)$t=q*9p'
-
+SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
